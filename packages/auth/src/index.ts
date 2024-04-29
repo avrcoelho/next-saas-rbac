@@ -33,5 +33,13 @@ export function defineAbilityFor(user: User) {
   }
   const builder = new AbilityBuilder(createAppAbility);
   permissions[user.role](user, builder);
-  return builder.build();
+  return builder.build({
+    detectSubjectType: (subject) => {
+      return subject.__typename;
+    },
+  });
 }
+
+export * from './models/User';
+export * from './models/Organization';
+export * from './models/Project';
